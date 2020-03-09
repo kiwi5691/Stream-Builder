@@ -15,7 +15,9 @@ public class FilterWithBaseJudge extends filterOp {
     private String extend2;
     @Override
     public String var() {
-        return BaseSyntax.OPPOSITE+this.var1+BaseSyntax.EQUALS+this.var2+BaseSyntax.SUFFIX;
+        return BaseSyntax.OPPOSITE+
+                this.var1+BaseSyntax.EQUALS+
+                this.var2+BaseSyntax.SUFFIX;
     }
 
     @Override

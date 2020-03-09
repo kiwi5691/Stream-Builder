@@ -1,9 +1,13 @@
 package cn.stream.streambuilder.stream.prototype.buildData;
 
+import cn.stream.streambuilder.stream.constant.BaseStarter;
 import cn.stream.streambuilder.stream.prototype.buildData.base.BuildData;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import static cn.stream.streambuilder.stream.constant.BaseStarter.ENTRYSETSTREAM;
+
 
 @Data
 @NoArgsConstructor
@@ -11,15 +15,15 @@ import lombok.NoArgsConstructor;
 public  class MapBuilder implements BuildData {
     private String var1;
     private String extend2;
-    private final String baseArgs ="entrySet().stream().";
     @Override
     public String var() {
         return this.var1;
     }
 
+    //entrySet().stream().
     @Override
     public StringBuilder build() {
-        return new StringBuilder(baseArgs)
+        return new StringBuilder(ENTRYSETSTREAM)
                 .append(var1)
                 .append(extend2);
     }
