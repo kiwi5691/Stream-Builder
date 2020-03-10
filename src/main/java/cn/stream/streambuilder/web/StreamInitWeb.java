@@ -7,15 +7,14 @@ import cn.stream.streambuilder.stream.prototype.endOperation.OpToList;
 import cn.stream.streambuilder.stream.prototype.endOperation.base.EndOperations;
 import cn.stream.streambuilder.stream.prototype.intermediate.FilterWithBaseJudge;
 import cn.stream.streambuilder.stream.prototype.intermediate.base.Intermediate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("ax/")
 public class StreamInitWeb {
 //后期改为vertx
 
-    @PostMapping("ax/dataToInit")
+    @PostMapping("dataToInit")
     public String dataToInit(){
         BuildData buildDate = new ListBuilder("","");
         Intermediate intermediate = new FilterWithBaseJudge("a","b","");
@@ -23,5 +22,12 @@ public class StreamInitWeb {
         BaseStream baseStream = new BaseStream(buildDate,intermediate,endOperations);
 
         return baseStream.construct();
+    }
+
+    @PostMapping("constructClass")
+    public String constructClass(@RequestBody String body){
+
+
+        return "body";
     }
 }

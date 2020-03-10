@@ -7,10 +7,12 @@
     </Badge>
     <Modal
             v-model="modal5"
-            title="只需要class类的属性"
+            title="请阅读右侧注意事项"
+             @on-ok="okCreate"
+             @on-cancel="cancelCreate"
+
             width="800">
-            <p>Customize width, unit px, default 520px.</p>
-            <p>The width of the dialog box is responsive, and the width becomes <code>auto</code> when the screen size is less than 768px.</p>
+             <Input type="textarea" v-model="baseClass" :rows="10" placeholder="please enter the description" />
        </Modal>
        <Modal
                    v-model="modal4"
@@ -134,6 +136,8 @@
 </template>
 
 <script>
+	import {construct} from "./api/classConstruct";
+
 export default {
   name: 'App',
   data () {
@@ -154,6 +158,7 @@ export default {
 
                     modal5: false,
                     modal4: false,
+                    baseClass: '',
 
 
 
@@ -174,8 +179,19 @@ export default {
                         }else{
                           this.$Message.info('目前处理数据类型');
                         }
-                      }
+                      },
+
+	      async  okCreate() {
+         	    const result = construct(this.baseClass);
+              this.$Message.info('创建成功');
+              this.$Message.info(result);
+         	},
+               cancelCreate () {
+                          this.$Message.info('取消创建');
+                    }
           }
+
+
 }
 </script>
 
