@@ -117,7 +117,7 @@
     </RadioGroup>
 
     <Select  v-show="isObject" v-model="objects" style="padding:10px; padding-left:20px; ">
-            <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+<!--            <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>-->
         </Select>
   </div>
 
@@ -136,7 +136,8 @@
 </template>
 
 <script>
-	import {construct} from "./api/classConstruct";
+  import { guid } from "./utils/serial";
+	import {toConstruct,construct} from "./api/classConstruct";
 
 export default {
   name: 'App',
@@ -182,9 +183,20 @@ export default {
                       },
 
 	      async  okCreate() {
-         	    const result = construct(this.baseClass);
-              this.$Message.info('创建成功');
-              this.$Message.info(result);
+
+          let datas = {
+            classContent: this.baseClass,
+            serial: guid()
+          };
+          toConstruct(datas).then(res => {
+                if(res.data.errno===0){
+                  this.$Message.info('创建成功');
+                  this.baseClass='';
+                }else{
+                  this.$Message.error('出现错误');
+                }
+              });
+
          	},
                cancelCreate () {
                           this.$Message.info('取消创建');

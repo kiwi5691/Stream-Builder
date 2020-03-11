@@ -11,7 +11,7 @@ import java.lang.reflect.Proxy;
 public class ConstructionTest {
     public static void main(String[] args) throws Exception {
 
-        ObjectFile.readWrite("test");
+//        ObjectFile.readWrite("test");
 
 //        System.out.println(Class.forName("java.lang.String").newInstance());
 //

@@ -1,4 +1,4 @@
-import { fetch } from "../utils/fetch";
+import { fetch,HttpRequest } from "../utils/fetch";
 import qs from 'qs';
 
 
@@ -7,9 +7,16 @@ export function construct(baseClass) {
     /*url与后台映射地址匹配;  method 与映射的方法匹配-->包括 GetMapping PostMapping
      *    PutMapping  DeleteMapping 等注解方法
      */
-    url: 'api/constructClass',
+    url: 'constructClass',
     method: 'post',
-    data: qs.stringify(baseClass),
+    data: baseClass,
+  });
+}
+export function toConstruct(datas) {
+  return HttpRequest.getRequest({
+    method: "POST",
+    url: "http://127.0.0.1:8080/api/constructClass",
+    data: datas
   });
 }
 
