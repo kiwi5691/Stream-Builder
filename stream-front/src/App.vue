@@ -184,6 +184,10 @@ export default {
 
 	      async  okCreate() {
 
+            if(this.baseClass==''){
+              this.$Message.error('请填写class');
+              return ;
+            }
           let datas = {
             classContent: this.baseClass,
             serial: guid()
