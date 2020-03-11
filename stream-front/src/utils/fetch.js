@@ -15,15 +15,15 @@ export async function fetch(options) {
     let result = await instance(options);
     result = result.data;
     console.log(result);
-    if (result.code === 1200 || result.code === 2000) {
+    //if (result.code === 1200 || result.code === 2000) {
       return result;
-    } else {
-      this.$Message.info({
-        content: result.message,
-        type: 'error',
-        closable: true
-      });
-    }
+    // } else {
+    //   this.$Message.info({
+    //     content: result.message,
+    //     type: 'error',
+    //     closable: true
+    //   });
+    // }
   } catch (err) {
     console.log(err)
   }

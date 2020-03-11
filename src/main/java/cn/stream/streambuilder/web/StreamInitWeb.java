@@ -10,7 +10,7 @@ import cn.stream.streambuilder.stream.prototype.intermediate.base.Intermediate;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("ax/")
+@RequestMapping("api/")
 public class StreamInitWeb {
 //后期改为vertx
 

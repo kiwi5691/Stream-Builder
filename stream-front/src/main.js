@@ -5,7 +5,12 @@ import App from './App'
 import router from './router'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css';
+import axios from 'axios'
+import qs from 'qs'
 
+
+Vue.prototype.$axios = axios
+Vue.prototype.qs = qs
 Vue.config.productionTip = false
 Vue.use(iView);
 

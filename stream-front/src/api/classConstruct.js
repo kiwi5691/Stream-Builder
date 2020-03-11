@@ -7,7 +7,7 @@ export function construct(baseClass) {
     /*url与后台映射地址匹配;  method 与映射的方法匹配-->包括 GetMapping PostMapping
      *    PutMapping  DeleteMapping 等注解方法
      */
-    url: 'http://127.0.0.1:8080/ax/constructClass',
+    url: 'api/constructClass',
     method: 'post',
     data: qs.stringify(baseClass),
   });
