@@ -13,7 +13,9 @@ import cn.stream.streambuilder.web.base.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -35,7 +37,9 @@ public class StreamInitWeb {
     @PostMapping("constructClass")
     public Object constructClass(@RequestBody String body) throws Exception {
 
-        ObjectFile.readWrite(JacksonUtil.parseString(body, "classContent"),JacksonUtil.parseString(body, "serial"));
+
+        List content = ObjectFile.classCharSetTsList(JacksonUtil.parseString(body, "classContent"));
+        ObjectFile.readWrite(content,JacksonUtil.parseString(body, "serial"));
         return Response.ok();
     }
 }
