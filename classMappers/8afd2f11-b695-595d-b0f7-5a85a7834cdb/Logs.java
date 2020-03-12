@@ -59,6 +59,7 @@ public class Logs {
 
     public void timeee() {
 
-                System.out.println("fuck");
+        System.out.println("fuck");
 
     }
+}
