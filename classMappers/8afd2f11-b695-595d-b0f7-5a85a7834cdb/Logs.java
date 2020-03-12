@@ -1,6 +1,4 @@
-
 import java.util.Date;
-
 
 public class Logs {
     private Long id;
@@ -21,9 +19,6 @@ public class Logs {
 
     public void setId(Long id) {
         this.id = id;
-    }
-    public void timeee() {
-        System.out.println("classLoader");
     }
 
     public Date getCreateTime() {
@@ -62,7 +57,8 @@ public class Logs {
         return type;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void timeee() {
+
+                System.out.println("fuck");
+
     }
-}

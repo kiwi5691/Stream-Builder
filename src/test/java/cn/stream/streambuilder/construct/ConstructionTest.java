@@ -1,19 +1,5 @@
 package cn.stream.streambuilder.construct;
 
-import cn.stream.streambuilder.construction.file.ObjectFile;
-
-import javax.tools.JavaFileObject;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import static cn.stream.streambuilder.config.Constant.STORAGEPATH;
-
 public class ConstructionTest {
     public static void main(String[] args) throws Exception {
 

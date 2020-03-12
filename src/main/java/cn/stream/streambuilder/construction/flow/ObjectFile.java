@@ -1,12 +1,9 @@
-package cn.stream.streambuilder.construction.file;
+package cn.stream.streambuilder.construction.flow;
 
 import cn.stream.streambuilder.exception.ClassCharSetIllegalException;
-import cn.stream.streambuilder.web.base.JacksonUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
@@ -34,40 +31,36 @@ public class ObjectFile {
     }
 
 
-    public static void readWrite(List content,String serial) throws Exception {
+    public static String readWrite(List content,String serial) throws Exception {
         Charset utf8 = StandardCharsets.UTF_8;
 
-        rootLocation = Paths.get(STORAGEPATH);
+        //todo TEST
+        rootLocation = Paths.get(STORAGEPATH+"\\"+serial);
         try {
             Files.createDirectories(rootLocation);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
         }
         try {
-            Files.write(Paths.get(rootLocation+"\\"+serial+".java"), content, utf8,
+            String className =getClassName(content);
+            if(className.equals("")){
+               throw new ClassCharSetIllegalException();
+            }
+            Files.write(Paths.get(rootLocation+"\\"+className+".java"), content, utf8,
                     StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+            return className;
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
 
-
-//        String outFileName = "classMappers\\";
-//
-//        Path readPath = Paths.get(file.getPath());
-//        Path writePath = Paths.get(outFileName);
-        //copy文件
-//                Files.copy(readPath, writePath);
-        //读取文件
-//        Files.write(writePath, Files.readAllBytes(readPath));
     }
-    public static String getClassName(String fileName) throws Exception {
+    public static String getClassName(List<String> lines) throws Exception {
         final String space="";
         final String suffix="{";
 
         final String ClassSuffix ="public class";
-        Path rootLocation;
-        rootLocation = Paths.get(STORAGEPATH);
-        List<String> lines = Files.readAllLines(Paths.get(STORAGEPATH+"/"+fileName), StandardCharsets.UTF_8);
         String className ="";
 
         Integer counter =0;
@@ -93,8 +86,4 @@ public class ObjectFile {
         return "";
     }
 
-    public static void main(String[] args) throws Exception {
-//        readWrite(new File("D:\\11G.rar"));
-//        readWriteUtils(new File("D:\\2.jpg"));
-    }
 }

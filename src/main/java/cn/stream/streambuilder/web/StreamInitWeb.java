@@ -1,6 +1,8 @@
 package cn.stream.streambuilder.web;
 
-import cn.stream.streambuilder.construction.file.ObjectFile;
+import cn.stream.streambuilder.construction.flow.ObjectCompiler;
+import cn.stream.streambuilder.construction.flow.ObjectFile;
+import cn.stream.streambuilder.exception.ClassCharSetIllegalException;
 import cn.stream.streambuilder.stream.base.BaseStream;
 import cn.stream.streambuilder.stream.prototype.buildData.ListBuilder;
 import cn.stream.streambuilder.stream.prototype.buildData.base.BuildData;
@@ -13,10 +15,7 @@ import cn.stream.streambuilder.web.base.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Slf4j
 @RestController
@@ -37,9 +36,17 @@ public class StreamInitWeb {
     @PostMapping("constructClass")
     public Object constructClass(@RequestBody String body) throws Exception {
 
-
+        String serial=JacksonUtil.parseString(body, "serial");
         List content = ObjectFile.classCharSetTsList(JacksonUtil.parseString(body, "classContent"));
-        ObjectFile.readWrite(content,JacksonUtil.parseString(body, "serial"));
+        String className =ObjectFile.readWrite(content,serial);
+        if(className!=null){
+
+            //开始编译
+//            ObjectCompiler.CompilerJava(className,serial);
+        }else {
+            throw new ClassCharSetIllegalException();
+
+        }
         return Response.ok();
     }
 }
