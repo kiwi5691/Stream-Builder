@@ -17,6 +17,7 @@ class MemoryClassLoader extends URLClassLoader {
         this.classBytes.putAll(classBytes);
     }
 
+    //通过传入的
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
         byte[] buf = classBytes.get(name);
