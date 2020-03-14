@@ -37,16 +37,16 @@ public class StreamInitWeb {
     public Object constructClass(@RequestBody String body) throws Exception {
 
         String serial=JacksonUtil.parseString(body, "serial");
-        List content = ObjectFile.classCharSetTsList(JacksonUtil.parseString(body, "classContent"));
-        String className =ObjectFile.readWrite(content,serial);
-        if(className!=null){
+        String content = JacksonUtil.parseString(body, "classContent");
+        String className =ObjectFile.getClassName(content);
+//        if(className!=null){
 
             //开始编译
 //            ObjectCompiler.CompilerJava(className,serial);
-        }else {
-            throw new ClassCharSetIllegalException();
-
-        }
+//        }else {
+//            throw new ClassCharSetIllegalException();
+//
+//        }
         return Response.ok();
     }
 }

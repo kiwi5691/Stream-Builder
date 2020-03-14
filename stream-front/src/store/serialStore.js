@@ -1,3 +1,5 @@
+
+
 export  function guid() {
   return 'xxxxxxxx-xxxx-5xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,
     function(c) {
@@ -5,4 +7,14 @@ export  function guid() {
         v = c == 'x' ? r : (r & 0x3 | 0x8);
       return v.toString(16);
     });
+}
+
+
+export  function getSerial(){
+
+  if(localStorage.getItem('serial')==null){
+    var num =guid();
+    localStorage.setItem('serial',num)
+  }
+  return localStorage.getItem('serial');
 }

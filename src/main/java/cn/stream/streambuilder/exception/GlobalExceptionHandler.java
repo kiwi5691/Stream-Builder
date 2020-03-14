@@ -7,11 +7,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
+import java.lang.reflect.InvocationTargetException;
+
 @ControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ClassCharSetIllegalException.class)
+    @ExceptionHandler({ClassCharSetIllegalException.class,ClassNotFoundException.class,IllegalAccessException.class,InstantiationException.class,NoSuchMethodException.class, InvocationTargetException.class})
     @ResponseBody
     public Object handlerSellerException(ClassCharSetIllegalException e) {
         log.error(e.getMessage(), e);

@@ -4,5 +4,4 @@
 
 i-anxio
 i-view
-npm install vuex-persist -D
 ## Build Setup

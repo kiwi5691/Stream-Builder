@@ -56,6 +56,7 @@ public class ObjectFile {
         return null;
 
     }
+
     public static String getClassName(List<String> lines) throws Exception {
         final String space="";
         final String suffix="{";
@@ -85,5 +86,7 @@ public class ObjectFile {
         }
         return "";
     }
-
+    public static String getClassName(String content) throws Exception {
+        return getClassName(classCharSetTsList(content));
+    }
 }

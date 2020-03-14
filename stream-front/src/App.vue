@@ -31,7 +31,8 @@
                  <Button type="success"  @click="modal5 = true" icon="md-add" style="float:left;" >创建</Button>
                  <Button type="error" @click="modal4 = true" icon="ios-alert-outline">注意</Button>
                  <Divider />
-                 <p :style="pStyle">Contacts</p>
+
+                 <p :style="pStyle" >Contacts</p>
                   <div class="demo-drawer-profile">
                                       <Row>
                                           <Col span="12">
@@ -136,7 +137,7 @@
 </template>
 
 <script>
-  import { guid } from "./utils/serial";
+  import { getSerial } from "./store/serialStore";
 	import {toConstruct,construct} from "./api/classConstruct";
 
 export default {
@@ -149,7 +150,8 @@ export default {
                    datatype: 'String',
                    isObject:false,
                    objects:'',
-                   value1: false,
+                value2: '1',
+                value1: false,
                     pStyle: {
                                        fontSize: '16px',
                                        lineHeight: '24px',
@@ -190,7 +192,7 @@ export default {
             }
           let datas = {
             classContent: this.baseClass,
-            serial: guid()
+            serial: getSerial()
           };
           toConstruct(datas).then(res => {
                 if(res.data.errno===0){
