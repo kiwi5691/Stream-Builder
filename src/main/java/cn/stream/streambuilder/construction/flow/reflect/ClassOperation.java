@@ -3,6 +3,7 @@ package cn.stream.streambuilder.construction.flow.reflect;
 import cn.stream.streambuilder.construction.flow.compiler.JavaStringCompiler;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -32,8 +33,13 @@ public class ClassOperation {
 
         JavaStringCompiler compiler = new JavaStringCompiler();
         Map<String, byte[]> results = compiler.compile("Logs.java", stringBuilder.toString());
+
+
         Class<?> clazz = compiler.loadClass("Logs", results);
         Object obj = clazz.newInstance();
+        Field[] fields = clazz.getDeclaredFields();
+
+
         clazz.getDeclaredMethod("timeee").invoke(obj);
         // try instance:
         return null;
